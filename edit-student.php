@@ -8,7 +8,17 @@ if(strlen($_SESSION['alogin'])=="")
     }
     else{
 
-$stid=intval($_GET['stid']);
+        
+        if(isset($_GET['delete'])){
+            $sql="delete from tblstudents  WHERE StudentId=:stdid";
+            $deeteId=intval($_GET['delete']);
+            $query = $dbh->prepare($sql);
+            $query->bindParam(':stdid',$deeteId);
+            $query->execute();
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        
+        $stid=intval($_GET['stid']);
 
 if(isset($_POST['submit']))
 {

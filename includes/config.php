@@ -1,8 +1,11 @@
 <?php 
+// ini_set('display_startup_errors', 1);
+// ini_set('display_errors', 1);
+// error_reporting(-1);
 // DB credentials.
-define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
+define('DB_HOST','127.0.0.1:3306');
+define('DB_USER','h2s');
+define('DB_PASS','password');
 define('DB_NAME','srms');
 // Establish database connection.
 try

@@ -152,6 +152,7 @@ else{
                                                                 ?></td>
 <td>
 <a href="edit-student.php?stid=<?php echo htmlentities($result->StudentId);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
+<a href="javascript::void" onclick="return confirmDelete('<?php echo $result->StudentName ?>', '<?php echo $result->StudentId ?>')"><i class="fa fa-trash" title="Delete Record"></i> </a> 
 
 </td>
 </tr>
@@ -212,6 +213,12 @@ else{
         <!-- ========== THEME JS ========== -->
         <script src="js/main.js"></script>
         <script>
+            function confirmDelete(studName,  stdid){
+                if(window.confirm("are you sure want to delete student : " + studName)){
+                    window.location.href = `edit-student.php?delete=${stdid}`
+                }
+            }
+
             $(function($) {
                 $('#example').DataTable();
 
