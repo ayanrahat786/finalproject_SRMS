@@ -129,7 +129,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                    <?php $sql = "SELECT tblteachers.teacherName,tblteachers.teacherEmail,tblteachers.gender,tblclasses.ClassName,tblclasses.Section from tblteachers join tblclasses on tblclasses.id=tblteachers.ClassId";
+                                                    <?php $sql = "SELECT tblteachers.id,tblteachers.teacherName,tblteachers.teacherEmail,tblteachers.gender,tblclasses.ClassName,tblclasses.Section from tblteachers join tblclasses on tblclasses.id=tblteachers.ClassId";
                                                         $query = $dbh->prepare($sql);
                                                         $query->execute();
                                                         $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -157,8 +157,10 @@ if (strlen($_SESSION['alogin']) == "") {
 
                                                         <td>
                                                             <a
-                                                                href="edit-student.php?stid=<?php echo htmlentities($result->StudentId); ?>"><i
+                                                                href="edit-teacher.php?stid=<?php echo htmlentities($result->id); ?>"><i
                                                                     class="fa fa-edit" title="Edit Record"></i> </a>
+
+                                                                    <a href="javascript::void" onclick="return confirmDelete('<?php echo $result->teacherName ?>', '<?php echo $result->id ?>')"><i class="fa fa-trash" title="Delete Record"></i> </a> 
 
                                                         </td>
                                                     </tr>
@@ -233,6 +235,25 @@ if (strlen($_SESSION['alogin']) == "") {
         $('#example3').DataTable();
     });
     </script>
+     <script>
+            function confirmDelete(studName,  stdid){
+                if(window.confirm("are you sure want to delete student : " + studName)){
+                    window.location.href = `edit-teacher.php?delete=${stdid}`
+                }
+            }
+
+            $(function($) {
+                $('#example').DataTable();
+
+                $('#example2').DataTable( {
+                    "scrollY":        "300px",
+                    "scrollCollapse": true,
+                    "paging":         false
+                } );
+
+                $('#example3').DataTable();
+            });
+        </script>
 </body>
 
 </html>

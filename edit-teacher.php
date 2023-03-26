@@ -8,6 +8,15 @@ if (strlen($_SESSION['alogin']) == "") {
 
     $stid = intval($_GET['stid']);
 
+    if(isset($_GET['delete'])){
+        $sql="delete from tblteachers  WHERE id=:stdid";
+        $deeteId=intval($_GET['delete']);
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':stdid',$deeteId);
+        $query->execute();
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
     if (isset($_POST['submit'])) {
         print_r($_POST);
         $studentname = $_POST['fullanme'];
@@ -52,7 +61,7 @@ if (strlen($_SESSION['alogin']) == "") {
     </head>
 
     <body class="top-navbar-fixed">
-        <script>
+        <!-- <script>
             document.addEventListener('DOMContentLoaded', () => {
                 console.log("LOADED")
                 document.getElementById("toChangePassword").addEventListener('change', (val) => {
@@ -60,7 +69,7 @@ if (strlen($_SESSION['alogin']) == "") {
                         'none'
                 })
             })
-        </script>
+        </script> -->
         <div class="main-wrapper">
 
             <!-- ========== TOP NAVBAR ========== -->
@@ -144,21 +153,11 @@ if (strlen($_SESSION['alogin']) == "") {
 
 
 
-                                                        <div class="form-group">
-                                                            <label for="default" class="col-sm-2 control-label">
-                                                                Change Password?</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="checkbox" id="toChangePassword"
-                                                                    name="toChangePassword" />
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="form-group" id="passwordForm" style="display: none;">
+                                                        <div class="form-group" id="passwordForm" >
                                                             <label for="default" class="col-sm-2 control-label">
                                                                 Password</label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="password" class="form-control"
+                                                                <input type="password" value="<?php echo $result->password ?>" name="password" class="form-control"
                                                                     id="password" required="required" autocomplete="off">
                                                             </div>
                                                         </div>
