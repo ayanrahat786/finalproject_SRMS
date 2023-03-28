@@ -118,6 +118,8 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
  $query->execute();
  $results = $query->fetchAll(PDO::FETCH_OBJ);
  $cnt = 1;
+ $cnt1=0;
+ $tt=0;
  if ($countrow = $query->rowCount() > 0) {
      foreach ($results as $result) {
        ?>
@@ -126,14 +128,15 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
        
 <tr>
     <td style="text-align: center">
-      <?php echo htmlentities($result->SubjectName); ?>
+      <?php echo htmlentities($result->SubjectName); $cnt1+=100;?>
     </td>
+    
     <td><?php echo htmlentities($result->PA1); ?></td>
     <td><?php echo htmlentities($result->Note_Book); ?></td>
     <td><?php echo htmlentities($result->	SubEnrich); ?></td>
     <td><?php echo htmlentities($result->HalfYearlyExam); ?></td>
     <td style="text-align: center">
-       <?php echo htmlentities($totalmarks = $result->marks); ?>
+       <?php echo htmlentities($totalmarks = $result->marks); $tt+=$totalmarks; ?>
     </td>
     <td>
       <?php 
@@ -226,7 +229,9 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
       </tr>     
       <tr>
         <td>Result:</td>
-        <td colspan="12"></td>
+        <td colspan="12">
+          <?php 
+          $per=$totlcount/$cnt1;$per*=100;echo $per."%"; ?></td>
       </tr>   
         
     </table>
