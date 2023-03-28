@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2023 at 01:29 PM
+-- Generation Time: Mar 28, 2023 at 05:33 PM
 -- Server version: 10.6.7-MariaDB-3
 -- PHP Version: 8.1.12
 
@@ -105,41 +105,51 @@ CREATE TABLE `tblresult` (
   `SubjectId` int(11) DEFAULT NULL,
   `marks` int(11) DEFAULT NULL,
   `PostingDate` timestamp NULL DEFAULT current_timestamp(),
-  `UpdationDate` timestamp NULL DEFAULT NULL
+  `UpdationDate` timestamp NULL DEFAULT NULL,
+  `PA1` int(11) NOT NULL,
+  `Note_Book` int(11) NOT NULL,
+  `SubEnrich` int(11) NOT NULL,
+  `HalfYearlyExam` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblresult`
 --
 
-INSERT INTO `tblresult` (`id`, `StudentId`, `ClassId`, `SubjectId`, `marks`, `PostingDate`, `UpdationDate`) VALUES
-(2, 1, 1, 2, 100, '2022-01-01 10:30:57', NULL),
-(3, 1, 1, 1, 80, '2022-01-01 10:30:57', NULL),
-(4, 1, 1, 5, 78, '2022-01-01 10:30:57', NULL),
-(5, 1, 1, 4, 60, '2022-01-01 10:30:57', NULL),
-(6, 2, 4, 2, 90, '2022-01-01 10:30:57', NULL),
-(7, 2, 4, 1, 75, '2022-01-01 10:30:57', NULL),
-(8, 2, 4, 5, 56, '2022-01-01 10:30:57', NULL),
-(9, 2, 4, 4, 80, '2022-01-01 10:30:57', NULL),
-(10, 4, 7, 2, 54, '2022-01-01 10:30:57', NULL),
-(11, 4, 7, 1, 85, '2022-01-01 10:30:57', NULL),
-(12, 4, 7, 5, 55, '2022-01-01 10:30:57', NULL),
-(13, 4, 7, 7, 65, '2022-01-01 10:30:57', NULL),
-(14, 5, 8, 2, 75, '2022-01-01 10:30:57', NULL),
-(15, 5, 8, 1, 56, '2022-01-01 10:30:57', NULL),
-(16, 5, 8, 5, 52, '2022-01-01 10:30:57', NULL),
-(17, 5, 8, 4, 80, '2022-01-01 10:30:57', NULL),
-(18, 6, 9, 8, 80, '2022-01-01 15:20:18', NULL),
-(19, 6, 9, 8, 70, '2022-01-01 15:20:18', NULL),
-(20, 6, 9, 2, 90, '2022-01-01 15:20:18', NULL),
-(21, 6, 9, 1, 60, '2022-01-01 15:20:18', NULL),
-(22, 7, 1, 2, 68, '2023-03-27 20:20:16', NULL),
-(23, 7, 1, 5, 75, '2023-03-27 20:20:16', NULL),
-(24, 7, 1, 4, 85, '2023-03-27 20:20:16', NULL),
-(25, 11, 9, 8, 87, '2023-03-28 07:44:54', NULL),
-(26, 11, 9, 8, 74, '2023-03-28 07:44:54', NULL),
-(27, 11, 9, 2, 86, '2023-03-28 07:44:54', NULL),
-(28, 11, 9, 1, 77, '2023-03-28 07:44:54', NULL);
+INSERT INTO `tblresult` (`id`, `StudentId`, `ClassId`, `SubjectId`, `marks`, `PostingDate`, `UpdationDate`, `PA1`, `Note_Book`, `SubEnrich`, `HalfYearlyExam`) VALUES
+(2, 1, 1, 2, 100, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(3, 1, 1, 1, 80, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(4, 1, 1, 5, 78, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(5, 1, 1, 4, 60, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(6, 2, 4, 2, 90, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(7, 2, 4, 1, 75, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(8, 2, 4, 5, 56, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(9, 2, 4, 4, 80, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(10, 4, 7, 2, 54, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(11, 4, 7, 1, 85, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(12, 4, 7, 5, 55, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(13, 4, 7, 7, 65, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(14, 5, 8, 2, 75, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(15, 5, 8, 1, 56, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(16, 5, 8, 5, 52, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(17, 5, 8, 4, 80, '2022-01-01 10:30:57', NULL, 0, 0, 0, 0),
+(18, 6, 9, 8, 80, '2022-01-01 15:20:18', NULL, 0, 0, 0, 0),
+(19, 6, 9, 8, 70, '2022-01-01 15:20:18', NULL, 0, 0, 0, 0),
+(20, 6, 9, 2, 90, '2022-01-01 15:20:18', NULL, 0, 0, 0, 0),
+(21, 6, 9, 1, 60, '2022-01-01 15:20:18', NULL, 0, 0, 0, 0),
+(22, 7, 1, 2, 68, '2023-03-27 20:20:16', NULL, 0, 0, 0, 0),
+(23, 7, 1, 5, 75, '2023-03-27 20:20:16', NULL, 0, 0, 0, 0),
+(24, 7, 1, 4, 85, '2023-03-27 20:20:16', NULL, 0, 0, 0, 0),
+(25, 11, 9, 8, 87, '2023-03-28 07:44:54', NULL, 0, 0, 0, 0),
+(26, 11, 9, 8, 74, '2023-03-28 07:44:54', NULL, 0, 0, 0, 0),
+(27, 11, 9, 2, 86, '2023-03-28 07:44:54', NULL, 0, 0, 0, 0),
+(28, 11, 9, 1, 77, '2023-03-28 07:44:54', NULL, 0, 0, 0, 0),
+(29, 9, 2, 5, 88, '2023-03-28 11:12:22', NULL, 5, 5, 5, 75),
+(30, 12, 2, 5, 88, '2023-03-28 11:17:17', NULL, 9, 4, 4, 71),
+(31, 10, 9, 8, 79, '2023-03-28 11:29:31', NULL, 10, 4, 5, 60),
+(32, 10, 9, 8, 89, '2023-03-28 11:29:31', NULL, 10, 5, 4, 70),
+(33, 10, 9, 2, 69, '2023-03-28 11:29:31', NULL, 10, 5, 4, 50),
+(34, 10, 9, 1, 59, '2023-03-28 11:29:31', NULL, 10, 5, 4, 40);
 
 -- --------------------------------------------------------
 
@@ -179,7 +189,8 @@ INSERT INTO `tblstudents` (`StudentId`, `StudentName`, `RollId`, `StudentEmail`,
 (8, 'riya', '22', 'r@gmail.com', 'Female', '2007-02-01', 9, '2023-03-28 06:51:45', NULL, 1, 'nirubhai', '0000011111', 'kuch bhi', '0'),
 (9, 'raj', '555', 'r@gmail.com', 'Male', '2023-03-02', 2, '2023-03-28 06:57:40', NULL, 1, 'minodbhai ', '78978978978', 'india', '0'),
 (10, 'riya', '225', 'r@gmail.com', 'Female', '2007-02-01', 9, '2023-03-28 07:11:31', NULL, 1, 'nirubhai', '0000011111', 'kuch bhi', 'siya'),
-(11, 'priya', '666', 'p@gmail.com', 'Female', '2008-06-02', 9, '2023-03-28 07:43:54', NULL, 1, 'arvindbhai', '9999999999', 'india', 'sangitben');
+(11, 'priya', '666', 'p@gmail.com', 'Female', '2008-06-02', 9, '2023-03-28 07:43:54', NULL, 1, 'arvindbhai', '9999999999', 'india', 'sangitben'),
+(12, 'priya', '987', 'pa@gmail.com', 'Female', '2023-03-18', 2, '2023-03-28 11:15:57', NULL, 1, 'manojbhai', '8888812345', 'delhi', 'radhikaben');
 
 -- --------------------------------------------------------
 
@@ -327,13 +338,13 @@ ALTER TABLE `tblnotice`
 -- AUTO_INCREMENT for table `tblresult`
 --
 ALTER TABLE `tblresult`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tblstudents`
 --
 ALTER TABLE `tblstudents`
-  MODIFY `StudentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `StudentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tblsubjectcombination`
