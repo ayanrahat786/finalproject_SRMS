@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 02, 2022 at 06:22 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Host: localhost
+-- Generation Time: Mar 28, 2023 at 01:29 PM
+-- Server version: 10.6.7-MariaDB-3
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `UserName`, `Password`, `updationDate`) VALUES
-(1, 'admin', 'f925916e2754e5e03f75dd58a5733251', '2022-01-01 10:30:57');
+(1, 'admin', 'f925916e2754e5e03f75dd58a5733251', '2022-01-01 10:30:57'),
+(2, 'sharad', 'af7363820c5f5fd1f6433cddc3b5a7a8', NULL);
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,14 @@ INSERT INTO `tblresult` (`id`, `StudentId`, `ClassId`, `SubjectId`, `marks`, `Po
 (18, 6, 9, 8, 80, '2022-01-01 15:20:18', NULL),
 (19, 6, 9, 8, 70, '2022-01-01 15:20:18', NULL),
 (20, 6, 9, 2, 90, '2022-01-01 15:20:18', NULL),
-(21, 6, 9, 1, 60, '2022-01-01 15:20:18', NULL);
+(21, 6, 9, 1, 60, '2022-01-01 15:20:18', NULL),
+(22, 7, 1, 2, 68, '2023-03-27 20:20:16', NULL),
+(23, 7, 1, 5, 75, '2023-03-27 20:20:16', NULL),
+(24, 7, 1, 4, 85, '2023-03-27 20:20:16', NULL),
+(25, 11, 9, 8, 87, '2023-03-28 07:44:54', NULL),
+(26, 11, 9, 8, 74, '2023-03-28 07:44:54', NULL),
+(27, 11, 9, 2, 86, '2023-03-28 07:44:54', NULL),
+(28, 11, 9, 1, 77, '2023-03-28 07:44:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -149,20 +157,29 @@ CREATE TABLE `tblstudents` (
   `ClassId` int(11) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT current_timestamp(),
   `UpdationDate` timestamp NULL DEFAULT NULL,
-  `Status` int(1) DEFAULT NULL
+  `Status` int(1) DEFAULT NULL,
+  `FatherName` varchar(100) NOT NULL,
+  `Contact` varchar(13) NOT NULL,
+  `Address` text NOT NULL,
+  `MotherName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblstudents`
 --
 
-INSERT INTO `tblstudents` (`StudentId`, `StudentName`, `RollId`, `StudentEmail`, `Gender`, `DOB`, `ClassId`, `RegDate`, `UpdationDate`, `Status`) VALUES
-(1, 'Sarita', '46456', 'info@phpgurukul.com', 'Female', '1995-03-03', 1, '2022-01-01 10:30:57', NULL, 1),
-(2, 'Anuj kumar', '10861', 'anuj@gmail.co', 'Male', '1995-02-02', 4, '2022-01-01 10:30:57', NULL, 0),
-(3, 'amit kumar', '2626', 'amit@gmail.com', 'Male', '2014-08-06', 6, '2022-01-01 10:30:57', NULL, 1),
-(4, 'rahul kumar', '990', 'rahul01@gmail.com', 'Male', '2001-02-03', 7, '2022-01-01 10:30:57', NULL, 1),
-(5, 'sanjeev singh', '122', 'sanjeev01@gmail.com', 'Male', '2002-02-03', 8, '2022-01-01 10:30:57', NULL, 1),
-(6, 'Shiv Gupta', '12345', 'shiv34534@gmail.com', 'Male', '2007-01-12', 9, '2022-01-01 15:19:40', NULL, 1);
+INSERT INTO `tblstudents` (`StudentId`, `StudentName`, `RollId`, `StudentEmail`, `Gender`, `DOB`, `ClassId`, `RegDate`, `UpdationDate`, `Status`, `FatherName`, `Contact`, `Address`, `MotherName`) VALUES
+(1, 'Sarita', '46456', 'info@phpgurukul.com', 'Female', '1995-03-03', 1, '2022-01-01 10:30:57', NULL, 1, '', '', '', '0'),
+(2, 'Anuj kumar', '10861', 'anuj@gmail.co', 'Male', '1995-02-02', 4, '2022-01-01 10:30:57', NULL, 0, '', '', '', '0'),
+(3, 'amit kumar', '2626', 'amit@gmail.com', 'Male', '2014-08-06', 6, '2022-01-01 10:30:57', NULL, 1, '', '', '', '0'),
+(4, 'rahul kumar', '990', 'rahul01@gmail.com', 'Male', '2001-02-03', 7, '2022-01-01 10:30:57', NULL, 1, '', '', '', '0'),
+(5, 'sanjeev singh', '122', 'sanjeev01@gmail.com', 'Male', '2002-02-03', 8, '2022-01-01 10:30:57', NULL, 1, '', '', '', '0'),
+(6, 'Shiv Gupta', '12345', 'shiv34534@gmail.com', 'Male', '2007-01-12', 9, '2022-01-01 15:19:40', NULL, 1, '', '', '', '0'),
+(7, 'rakesh', '222', 'abc@gmai.com', 'Male', '2005-02-10', 1, '2023-03-27 20:19:44', NULL, 1, '', '', '', '0'),
+(8, 'riya', '22', 'r@gmail.com', 'Female', '2007-02-01', 9, '2023-03-28 06:51:45', NULL, 1, 'nirubhai', '0000011111', 'kuch bhi', '0'),
+(9, 'raj', '555', 'r@gmail.com', 'Male', '2023-03-02', 2, '2023-03-28 06:57:40', NULL, 1, 'minodbhai ', '78978978978', 'india', '0'),
+(10, 'riya', '225', 'r@gmail.com', 'Female', '2007-02-01', 9, '2023-03-28 07:11:31', NULL, 1, 'nirubhai', '0000011111', 'kuch bhi', 'siya'),
+(11, 'priya', '666', 'p@gmail.com', 'Female', '2008-06-02', 9, '2023-03-28 07:43:54', NULL, 1, 'arvindbhai', '9999999999', 'india', 'sangitben');
 
 -- --------------------------------------------------------
 
@@ -292,7 +309,7 @@ ALTER TABLE `tblsubjects`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tblclasses`
@@ -310,13 +327,13 @@ ALTER TABLE `tblnotice`
 -- AUTO_INCREMENT for table `tblresult`
 --
 ALTER TABLE `tblresult`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tblstudents`
 --
 ALTER TABLE `tblstudents`
-  MODIFY `StudentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `StudentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tblsubjectcombination`
