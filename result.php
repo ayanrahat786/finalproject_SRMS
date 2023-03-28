@@ -111,7 +111,7 @@ include('includes/config.php');
       <?php
                                                             // Code for result
                                                         
-$query = "select t.StudentName,t.RollId,t.ClassId,t.marks,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.marks,tr.PA1,tr.Note_Book,tr.SubEnrich,tr.HalfYearlyExam,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
+$query = "select t.StudentName,t.RollId,t.ClassId,t.marks,t.PA1,t.Note_Book,t.SubEnrich,t.HalfYearlyExam,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.marks,tr.PA1,tr.Note_Book,tr.SubEnrich,tr.HalfYearlyExam,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
 $query = $dbh->prepare($query);
  $query->bindParam(':rollid', $rollid, PDO::PARAM_STR);
 $query->bindParam(':classid', $classid, PDO::PARAM_STR);
@@ -121,6 +121,8 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
  if ($countrow = $query->rowCount() > 0) {
      foreach ($results as $result) {
        ?>
+       
+
        
 <tr>
     <td style="text-align: center">
