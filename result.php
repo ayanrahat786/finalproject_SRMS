@@ -111,7 +111,7 @@ include('includes/config.php');
       <?php
                                                             // Code for result
                                                         
-$query = "select t.StudentName,t.RollId,t.ClassId,t.marks,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.marks,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
+$query = "select t.StudentName,t.RollId,t.ClassId,t.marks,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.marks,tr.PA1,tr.Note_Book,tr.SubEnrich,tr.HalfYearlyExam,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
 $query = $dbh->prepare($query);
  $query->bindParam(':rollid', $rollid, PDO::PARAM_STR);
 $query->bindParam(':classid', $classid, PDO::PARAM_STR);
@@ -126,10 +126,10 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
     <td style="text-align: center">
       <?php echo htmlentities($result->SubjectName); ?>
     </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo htmlentities($result->PA1); ?></td>
+    <td><?php echo htmlentities($result->Note_Book); ?></td>
+    <td><?php echo htmlentities($result->	SubEnrich); ?></td>
+    <td><?php echo htmlentities($result->HalfYearlyExam); ?></td>
     <td style="text-align: center">
        <?php echo htmlentities($totalmarks = $result->marks); ?>
     </td>
