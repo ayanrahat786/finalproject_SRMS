@@ -9,10 +9,29 @@ if(strlen($_SESSION['alogin'])=="")
     else{
 if(isset($_POST['submit']))
 {
+    $hyear=array();
+    $sub=array();
+    $nbook=array();
+    $pa=array();
     $marks=array();
+    $p2_mark=array();
+    $p2_hyear=array();
+    $p2_sub=array();
+    $p2_nbook=array();
+    $p2_pa=array();
 $class=$_POST['class'];
 $studentid=$_POST['studentid']; 
 $mark=$_POST['marks'];
+$pa=$_POST['pa'];
+$nbook=$_POST['nbook'];
+$sub=$_POST['sub'];
+$hyear=$_POST['hyear'];
+// term 2
+$p2_mark=$_POST['p2_marks'];
+$p2_pa=$_POST['p2_pa'];
+$p2_nbook=$_POST['p2_nbook'];
+$p2_sub=$_POST['p2_sub'];
+$p2_hyear=$_POST['p2_hyear'];
 
  $stmt = $dbh->prepare("SELECT tblsubjects.SubjectName,tblsubjects.id FROM tblsubjectcombination join  tblsubjects on  tblsubjects.id=tblsubjectcombination.SubjectId WHERE tblsubjectcombination.ClassId=:cid order by tblsubjects.SubjectName");
  $stmt->execute(array(':cid' => $class));
@@ -25,13 +44,32 @@ array_push($sid1,$row['id']);
   
 for($i=0;$i<count($mark);$i++){
     $mar=$mark[$i];
+    $paa=$pa[$i];
+    $nboo=$nbook[$i];
+    $su=$sub[$i];
+    $hy=$hyear[$i];
+    $p2_mar=$p2_mark[$i];
+    $p2_paa=$p2_pa[$i];
+    $p2_nboo=$p2_nbook[$i];
+    $p2_su=$p2_sub[$i];
+    $p2_hy=$p2_hyear[$i];
   $sid=$sid1[$i];
-$sql="INSERT INTO  tblresult(StudentId,ClassId,SubjectId,marks) VALUES(:studentid,:class,:sid,:marks)";
+$sql="INSERT INTO  tblresult(StudentId,ClassId,SubjectId,marks,	PA1,Note_Book,SubEnrich,HalfYearlyExam,II_total,II_PA2,II_NoteBook,II_SubEnrich,II_HalfYearlyExam) VALUES(:studentid,:class,:sid,:marks,:pa,:nbook,:sub,:hyear,:p2_marks,:p2_pa,:p2_nbook,:p2_sub,:p2_hyear)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':studentid',$studentid,PDO::PARAM_STR);
 $query->bindParam(':class',$class,PDO::PARAM_STR);
 $query->bindParam(':sid',$sid,PDO::PARAM_STR);
 $query->bindParam(':marks',$mar,PDO::PARAM_STR);
+$query->bindParam(':pa',$paa,PDO::PARAM_STR);
+$query->bindParam(':nbook',$nboo,PDO::PARAM_STR);
+$query->bindParam(':sub',$su,PDO::PARAM_STR);
+$query->bindParam(':hyear',$hy,PDO::PARAM_STR);
+$query->bindParam(':p2_marks',$p2_mar,PDO::PARAM_STR);
+$query->bindParam(':p2_pa',$p2_paa,PDO::PARAM_STR);
+$query->bindParam(':p2_nbook',$p2_nboo,PDO::PARAM_STR);
+$query->bindParam(':p2_sub',$p2_su,PDO::PARAM_STR);
+$query->bindParam(':p2_hyear',$p2_hy,PDO::PARAM_STR);
+
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
@@ -229,7 +267,7 @@ foreach($results as $result)
         <script src="js/lobipanel/lobipanel.min.js"></script>
         <script src="js/iscroll/iscroll.js"></script>
         <script src="js/prism/prism.js"></script>
-        <script src="js/select2/select2.min.js"></script>
+        <script src="js/select2/select2.min.js"></script> 
         <script src="js/main.js"></script>
         <script>
             $(function($) {
