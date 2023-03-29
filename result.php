@@ -111,7 +111,7 @@ include('includes/config.php');
       <?php
                                                             // Code for result
                                                         
-$query = "select t.StudentName,t.RollId,t.ClassId,t.marks,t.PA1,t.Note_Book,t.SubEnrich,t.HalfYearlyExam,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.marks,tr.PA1,tr.Note_Book,tr.SubEnrich,tr.HalfYearlyExam,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
+$query = "select t.StudentName,t.RollId,t.ClassId,t.marks,t.PA1,t.Note_Book,t.SubEnrich,t.HalfYearlyExam,t.II_PA2,II_NoteBook,II_SubEnrich,II_HalfYearlyExam,t.II_total,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.marks,tr.PA1,tr.Note_Book,tr.SubEnrich,tr.HalfYearlyExam,tr.	II_PA2,tr.II_NoteBook,tr.II_SubEnrich,tr.II_HalfYearlyExam,tr.II_total,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
 $query = $dbh->prepare($query);
  $query->bindParam(':rollid', $rollid, PDO::PARAM_STR);
 $query->bindParam(':classid', $classid, PDO::PARAM_STR);
@@ -157,11 +157,11 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
       }
       ?>
     </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo htmlentities($result->II_PA2); ?></td>
+    <td><?php echo htmlentities($result->II_NoteBook); ?></td>
+    <td><?php echo htmlentities($result->	II_SubEnrich); ?></td>
+    <td><?php echo htmlentities($result->II_HalfYearlyExam); ?></td>
+    <td> <?php echo htmlentities($totalmarks2 = $result->II_total); $tt1+=$totalmarks2; ?></td>
     <td> <?php 
     if(isset($totalmarks2)){
     
@@ -188,6 +188,7 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
 </tr>
   <?php
   $totlcount += $totalmarks;
+  $totlcount2 +=$totalmarks2;
   $cnt++;
   }
 }
@@ -231,6 +232,8 @@ $query->bindParam(':classid', $classid, PDO::PARAM_STR);
         <td>Result:</td>
         <td colspan="12">
           <?php 
+          $cnt1 *=2;
+          $totlcount +=$totalmarks2;
           $per=$totlcount/$cnt1;$per*=100;echo $per."%"; ?></td>
       </tr>   
         
