@@ -3,8 +3,8 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])=="")
-    {   
-    header("Location: index.php"); 
+    {
+    header("Location: index.php");
     }
     else{
 if(isset($_POST['submit']))
@@ -20,7 +20,7 @@ if(isset($_POST['submit']))
     $p2_nbook=array();
     $p2_pa=array();
 $class=$_POST['class'];
-$studentid=$_POST['studentid']; 
+$studentid=$_POST['studentid'];
 $mark=$_POST['marks'];
 $pa=$_POST['pa'];
 $nbook=$_POST['nbook'];
@@ -40,8 +40,8 @@ $p2_hyear=$_POST['p2_hyear'];
  {
 
 array_push($sid1,$row['id']);
-   } 
-  
+   }
+
 for($i=0;$i<count($mark);$i++){
     $mar=$mark[$i];
     $paa=$pa[$i];
@@ -76,7 +76,7 @@ if($lastInsertId)
 {
 $msg="Result info added successfully";
 }
-else 
+else
 {
 $error="Something went wrong. Please try again";
 }
@@ -106,7 +106,7 @@ function getStudent(val) {
     data:'classid='+val,
     success: function(data){
         $("#studentid").html(data);
-        
+
     }
     });
 $.ajax({
@@ -115,16 +115,16 @@ $.ajax({
         data:'classid1='+val,
         success: function(data){
             $("#subject").html(data);
-            
+
         }
         });
 }
     </script>
 <script>
 
-function getresult(val,clid) 
-{   
-    
+function getresult(val,clid)
+{
+
 var clid=$(".clid").val();
 var val=$(".stid").val();;
 var abh=clid+'$'+val;
@@ -135,7 +135,7 @@ var abh=clid+'$'+val;
         data:'studclass='+abh,
         success: function(data){
             $("#reslt").html(data);
-            
+
         }
         });
 }
@@ -147,13 +147,13 @@ var abh=clid+'$'+val;
         <div class="main-wrapper">
 
             <!-- ========== TOP NAVBAR ========== -->
-  <?php include('includes/topbar.php');?> 
+  <?php include('includes/topbar.php');?>
             <!-- ========== WRAPPER FOR BOTH SIDEBARS & MAIN CONTENT ========== -->
             <div class="content-wrapper">
                 <div class="content-container">
 
                     <!-- ========== LEFT SIDEBAR ========== -->
-                   <?php include('includes/leftbar.php');?>  
+                   <?php include('includes/leftbar.php');?>
                     <!-- /.left-sidebar -->
 
                     <div class="main-page">
@@ -162,9 +162,9 @@ var abh=clid+'$'+val;
                             <div class="row page-title-div">
                                 <div class="col-md-6">
                                     <h2 class="title">Declare Result</h2>
-                                
+
                                 </div>
-                                
+
                                 <!-- /.col-md-6 text-right -->
                             </div>
                             <!-- /.row -->
@@ -172,25 +172,25 @@ var abh=clid+'$'+val;
                                 <div class="col-md-6">
                                     <ul class="breadcrumb">
                                         <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
-                                
+
                                         <li class="active">Student Result</li>
                                     </ul>
                                 </div>
-                             
+
                             </div>
                             <!-- /.row -->
                         </div>
                         <div class="container-fluid">
-                           
+
                         <div class="row">
                                     <div class="col-md-12">
                                         <div class="panel">
-                                           
+
                                             <div class="panel-body">
 <?php if($msg){?>
 <div class="alert alert-success left-icon-alert" role="alert">
  <strong>Well done!</strong><?php echo htmlentities($msg); ?>
- </div><?php } 
+ </div><?php }
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
                                             <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
@@ -225,13 +225,13 @@ foreach($results as $result)
                                                     </div>
 
                                                     <div class="form-group">
-                                                      
+
                                                         <div class="col-sm-10">
                                                     <div  id="reslt">
                                                     </div>
                                                         </div>
                                                     </div>
-                                                    
+
 <div class="form-group">
                                                         <label for="date" class="col-sm-2 control-label">Subjects</label>
                                                         <div class="col-sm-10">
@@ -241,7 +241,7 @@ foreach($results as $result)
                                                     </div>
 
 
-                                                    
+
                                                     <div class="form-group">
                                                         <div class="col-sm-offset-2 col-sm-10">
                                                             <button type="submit" name="submit" id="submit" class="btn btn-primary">Declare Result</button>
@@ -267,7 +267,7 @@ foreach($results as $result)
         <script src="js/lobipanel/lobipanel.min.js"></script>
         <script src="js/iscroll/iscroll.js"></script>
         <script src="js/prism/prism.js"></script>
-        <script src="js/select2/select2.min.js"></script> 
+        <script src="js/select2/select2.min.js"></script>
         <script src="js/main.js"></script>
         <script>
             $(function($) {
@@ -283,3 +283,4 @@ foreach($results as $result)
     </body>
 </html>
 <?PHP } ?>
+
