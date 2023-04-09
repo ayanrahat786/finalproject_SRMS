@@ -1,6 +1,8 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_NOTICE);
+ini_set('error_reporting', E_ALL);
 include('includes/config.php');
 if (strlen($_SESSION['alogin']) == "") {
     header("Location: index.php");

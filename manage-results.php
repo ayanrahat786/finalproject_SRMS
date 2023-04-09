@@ -132,6 +132,16 @@ else if($error){?>
 $query = $dbh->prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
+if($_SESSION['role'] === 'teacher'){
+    $get_class_id_sql = "SELECT * FROM tblclasses WHERE id=" . $_SESSION['id'];
+  $query = $dbh->prepare($get_class_id_sql);
+  $query->execute();
+  $results=$query->fetchAll(PDO::FETCH_OBJ);
+  $sql = "SELECT  distinct tblstudents.StudentName,tblstudents.RollId,tblstudents.RegDate,tblstudents.StudentId,tblstudents.Status,tblclasses.ClassName,tblclasses.Section from tblresult join tblstudents on tblstudents.StudentId=tblresult.StudentId  join tblclasses on tblclasses.id=tblresult.ClassId WHERE ClassId=" . $results[0]->id;
+  $query = $dbh->prepare($sql);
+  $query->execute();
+    $results=$query->fetchAll(PDO::FETCH_OBJ);
+}
 $cnt=1;
 if($query->rowCount() > 0)
 {

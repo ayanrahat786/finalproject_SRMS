@@ -128,10 +128,21 @@ else if($error){?>
                                                         </tr>
                                                     </tfoot>
                                                     <tbody>
-<?php $sql = "SELECT tblstudents.StudentName,tblstudents.RollId,tblstudents.RegDate,tblstudents.StudentId,tblstudents.Status,tblclasses.ClassName,tblclasses.Section from tblstudents join tblclasses on tblclasses.id=tblstudents.ClassId";
+<?php 
+$sql = "SELECT tblstudents.StudentName,tblstudents.RollId,tblstudents.RegDate,tblstudents.StudentId,tblstudents.Status,tblclasses.ClassName from tblstudents join tblclasses on tblclasses.id=tblstudents.ClassId";
 $query = $dbh->prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
+if($_SESSION['role'] === 'teacher'){
+    $get_class_id_sql = "SELECT * FROM tblclasses WHERE id=" . $_SESSION['id'];
+  $query = $dbh->prepare($get_class_id_sql);
+  $query->execute();
+  $results=$query->fetchAll(PDO::FETCH_OBJ);
+  $sql = "SELECT tblstudents.StudentName,tblstudents.RollId,tblstudents.RegDate,tblstudents.StudentId,tblstudents.Status,tblclasses.ClassName from tblstudents join tblclasses on tblclasses.id=tblstudents.ClassId WHERE ClassId=" . $results[0]->id;
+  $query = $dbh->prepare($sql);
+  $query->execute();
+    $results=$query->fetchAll(PDO::FETCH_OBJ);
+}
 $cnt=1;
 if($query->rowCount() > 0)
 {
@@ -141,7 +152,7 @@ foreach($results as $result)
  <td><?php echo htmlentities($cnt);?></td>
                                                             <td><?php echo htmlentities($result->StudentName);?></td>
                                                             <td><?php echo htmlentities($result->RollId);?></td>
-                                                            <td><?php echo htmlentities($result->ClassName);?>(<?php echo htmlentities($result->Section);?>)</td>
+                                                            <td><?php echo htmlentities($result->ClassName);?></td>
                                                             <td><?php echo htmlentities($result->RegDate);?></td>
                                                              <td><?php if($result->Status==1){
 echo htmlentities('Active');

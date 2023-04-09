@@ -100,6 +100,7 @@ $error="Something went wrong. Please try again";
         <script src="js/modernizr/modernizr.min.js"></script>
         <script>
 function getStudent(val) {
+    console.log(val)
     $.ajax({
     type: "POST",
     url: "get_student.php",
@@ -198,21 +199,21 @@ else if($error){?>
                                         <?php } ?>
                                                 <form class="form-horizontal" method="post">
 
- <div class="form-group">
-<label for="default" class="col-sm-2 control-label">Class</label>
- <div class="col-sm-10">
- <select name="class" class="form-control clid" id="classid" onChange="getStudent(this.value);" required="required">
-<option value="">Select Class</option>
-<?php $sql = "SELECT * from tblclasses";
+<?php $sql = "SELECT * from tblclasses WHERE id=" . $_SESSION['id'];
 $query = $dbh->prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{   ?>
-<option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->ClassName); ?>&nbsp; Section-<?php echo htmlentities($result->Section); ?></option>
-<?php }} ?>
+ ?>
+
+
+
+ <div class="form-group">
+<label for="default" class="col-sm-2 control-label">Class</label>
+ <div class="col-sm-10">
+
+ <select name="class" onClick="<?php echo 'getStudent(' . $results[0]->id . '); '?>" class="form-control clid" id="classid" required="required" >
+<option value="<?php echo $results[0]->id ?>"><?php echo $results[0]->ClassName ?></option>
+
  </select>
                                                         </div>
                                                     </div>

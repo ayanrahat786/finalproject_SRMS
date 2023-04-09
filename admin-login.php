@@ -12,7 +12,7 @@ $role=$_POST['role'];
 $password=md5($_POST['password']);
 $sql = "";
 if($role === 'admin') $sql = "SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
-else if($role === 'teacher') $sql = "SELECT teacherName,password FROM tblteachers WHERE teacherName=:uname and password=:password";
+else if($role === 'teacher') $sql = "SELECT id,teacherName,password FROM tblteachers WHERE teacherName=:uname and password=:password";
 else return;
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':uname', $uname, PDO::PARAM_STR);
@@ -22,6 +22,10 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 if($query->rowCount() > 0)
 {
 $_SESSION['alogin']=$_POST['username'];
+$_SESSION['role']=$role;
+$_SESSION['id']=$results[0]->id;
+
+
 echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
 } else{
     

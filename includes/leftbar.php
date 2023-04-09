@@ -8,7 +8,9 @@
         <!-- /.user-info -->
 
         <div class="sidebar-nav">
+            
             <ul class="side-nav color-gray">
+                <?php if($_SESSION['role'] === 'admin'){ ?>
                 <li class="nav-header">
                     <span class="">Main Category</span>
                 </li>
@@ -16,10 +18,12 @@
                     <a href="dashboard.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span> </a>
 
                 </li>
+                <?php } ?>
 
                 <li class="nav-header">
                     <span class="">Appearance</span>
                 </li>
+                <?php if($_SESSION['role'] === 'admin'){ ?>
                 <li class="has-children">
                     <a href="#"><i class="fa fa-file-text"></i> <span>Student Classes</span> <i
                             class="fa fa-angle-right arrow"></i></a>
@@ -30,6 +34,9 @@
 
                     </ul>
                 </li>
+                <?php } ?>
+
+                <?php if($_SESSION['role'] === 'admin'){ ?>
                 <li class="has-children">
                     <a href="#"><i class="fa fa-file-text"></i> <span>Subjects</span> <i
                             class="fa fa-angle-right arrow"></i></a>
@@ -42,8 +49,11 @@
                         <a href="manage-subjectcombination.php"><i class="fa fa-newspaper-o"></i> <span>Manage Subject
                                 Combination </span></a>
                 </li>
+                
             </ul>
-            </li>
+        </li>
+        <?php } ?>
+            <?php if($_SESSION['role'] === 'admin'){ ?>
             <li class="has-children">
                 <a href="#"><i class="fa fa-users"></i> <span>Teachers</span> <i
                         class="fa fa-angle-right arrow"></i></a>
@@ -54,6 +64,8 @@
 
                 </ul>
             </li>
+                <?php } ?>
+
             <li class="has-children">
                 <a href="#"><i class="fa fa-users"></i> <span>Students</span> <i
                         class="fa fa-angle-right arrow"></i></a>
@@ -74,7 +86,7 @@
                 </ul>
             </li>
 
-
+            <?php if($_SESSION['role'] === 'admin'){ ?>
             <li class="has-children">
                 <a href="#"><i class="fa fa-bell"></i> <span>Notices</span> <i class="fa fa-angle-right arrow"></i></a>
                 <ul class="child-nav">
@@ -84,12 +96,13 @@
 
                 </ul>
             </li>
+            <?php } ?>
 
 
-
+            <?php if($_SESSION['role'] === 'admin'){ ?>
             <li><a href="change-password.php"><i class="fa fa fa-server"></i> <span> Admin Change Password</span></a>
             </li>
-
+                <?php } ?>
 
         </div>
         <!-- /.sidebar-nav -->

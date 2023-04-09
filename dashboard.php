@@ -36,6 +36,7 @@ if(strlen($_SESSION['alogin'])=="")
                         <div class="container-fluid">
                             <div class="row page-title-div">
                                 <div class="col-sm-6">
+                                <p><?php echo '<pre>';var_dump($_SESSION);echo '</pre>';?></p>
                                     <h2 class="title">Dashboard</h2>
                                   
                                 </div>
