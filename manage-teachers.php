@@ -129,10 +129,10 @@ if (strlen($_SESSION['alogin']) == "") {
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                    <?php $sql = "SELECT tblteachers.id,tblteachers.teacherName,tblteachers.teacherEmail,tblteachers.gender,tblclasses.ClassName,tblclasses.Section from tblteachers join tblclasses on tblclasses.id=tblteachers.ClassId";
-                                                        $query = $dbh->prepare($sql);
-                                                        $query->execute();
-                                                        $results = $query->fetchAll(PDO::FETCH_OBJ);
+                                                    <?php $sql = "SELECT tblteachers.id,tblteachers.teacherName,tblteachers.teacherEmail,tblteachers.gender,tblclasses.ClassName from tblteachers join tblclasses on tblclasses.id=tblteachers.ClassId";
+                                                       $query = $dbh->prepare($sql);
+                                                       $query->execute();
+                                                       $results = $query->fetchAll(PDO::FETCH_OBJ);
                                                         $cnt = 1;
                                                         if ($query->rowCount() > 0) {
                                                             foreach ($results as $result) { ?>
@@ -151,8 +151,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                                         </td>
 
                                                         <td>
-                                                            <?php echo htmlentities($result->ClassName); ?>(
-                                                            <?php echo htmlentities($result->Section); ?>)
+                                                            <?php echo htmlentities($result->ClassName); ?>
                                                         </td>
 
                                                         <td>

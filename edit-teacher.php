@@ -22,17 +22,20 @@ if (strlen($_SESSION['alogin']) == "") {
         $studentname = $_POST['fullanme'];
         $roolid = $_POST['rollid'];
         $studentemail = $_POST['emailid'];
+        $passwoord = $_POST['oldPassword'];
         if ($_POST['toChangePassword'] == 'on') {
-
+            $passwoord = md5($_POST['password']);
+             
         }
         $gender = $_POST['gender'];
         $classid = $_POST['class'];
         $dob = $_POST['dob'];
         $status = $_POST['status'];
-        $sql = "update tblteachers set teachername=:studentname,teacherEmail=:studentemail,gender=:gender where id=:stid ";
+        $sql = "update tblteachers set teachername=:studentname,teacherEmail=:studentemail,gender=:gender,password=:password where id=:stid ";
         $query = $dbh->prepare($sql);
         $query->bindParam(':studentname', $studentname, PDO::PARAM_STR);
         $query->bindParam(':studentemail', $studentemail, PDO::PARAM_STR);
+        $query->bindParam(':password', $passwoord, PDO::PARAM_STR);
         $query->bindParam(':gender', $gender, PDO::PARAM_STR);
         $query->bindParam(':stid', $stid, PDO::PARAM_STR);
         $query->execute();
@@ -61,15 +64,17 @@ if (strlen($_SESSION['alogin']) == "") {
     </head>
 
     <body class="top-navbar-fixed">
-        <!-- <script>
+        <script>
             document.addEventListener('DOMContentLoaded', () => {
                 console.log("LOADED")
                 document.getElementById("toChangePassword").addEventListener('change', (val) => {
+                    if(val.target.checked) document.getElementById("password").setAttribute("required", "")
+                    else document.getElementById("password").removeAttribute("required")
                     document.getElementById("passwordForm").style.display = val.target.checked ? 'block' :
                         'none'
                 })
             })
-        </script> -->
+        </script>
         <div class="main-wrapper">
 
             <!-- ========== TOP NAVBAR ========== -->
@@ -131,7 +136,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                             <form class="form-horizontal" method="post">
                                                 <?php
 
-                                                $sql = "SELECT tblteachers.teacherName,tblteachers.password,tblteachers.teacherEmail,tblteachers.gender,tblclasses.ClassName,tblclasses.Section from tblteachers join tblclasses on tblclasses.id=tblteachers.ClassId where tblteachers.id=:stid";
+                                                $sql = "SELECT tblteachers.teacherName,tblteachers.password,tblteachers.teacherEmail,tblteachers.gender,tblclasses.ClassName from tblteachers join tblclasses on tblclasses.id=tblteachers.ClassId where tblteachers.id=:stid";
                                                 $query = $dbh->prepare($sql);
                                                 $query->bindParam(':stid', $stid, PDO::PARAM_STR);
                                                 $query->execute();
@@ -152,13 +157,24 @@ if (strlen($_SESSION['alogin']) == "") {
                                                         </div>
 
 
-
-                                                        <div class="form-group" id="passwordForm" >
+                                                        <div class="form-group" >
                                                             <label for="default" class="col-sm-2 control-label">
-                                                                Password</label>
+                                                                Change Password</label>
                                                             <div class="col-sm-10">
-                                                                <input type="password" value="<?php echo $result->password ?>" name="password" class="form-control"
-                                                                    id="password" required="required" autocomplete="off">
+                                                            <input type="checkbox" id="toChangePassword"  name="toChangePassword">
+                                                            </div>
+                                                        </div>
+
+                                                        <input type="hidden" name="oldPassword" class="form-control"
+                                                            id="oldPassword" value="<?php echo htmlentities($result->password); ?>" autocomplete="off" hidden>
+
+
+                                                        <div class="form-group" id="passwordForm" hidden>
+                                                            <label for="default" class="col-sm-2 control-label">
+                                                                New Password</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="password" name="password" class="form-control"
+                                                                    id="password"  autocomplete="off">
                                                             </div>
                                                         </div>
 

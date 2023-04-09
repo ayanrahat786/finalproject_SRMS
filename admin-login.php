@@ -8,8 +8,12 @@ $_SESSION['alogin']='';
 if(isset($_POST['login']))
 {
 $uname=$_POST['username'];
+$role=$_POST['role'];
 $password=md5($_POST['password']);
-$sql ="SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
+$sql = "";
+if($role === 'admin') $sql = "SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
+else if($role === 'teacher') $sql = "SELECT teacherName,password FROM tblteachers WHERE teacherName=:uname and password=:password";
+else return;
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':uname', $uname, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
@@ -79,6 +83,18 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                                                     			<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
                                                     		</div>
                                                     	</div>
+
+                                                        <div class="form-group">
+                                                    		<label for="inputPassword3" class="col-sm-2 control-label">Role</label>
+                                                    		<div class="col-sm-10">
+                                                            <select name="role" class="form-control" id="role">
+                                                            <option value="teacher">Teacher</option>
+                                                            <option value="admin">Admin</option>
+                                                            </select>
+                                                    		</div>
+                                                    	</div>
+
+                                                       
                                                     
                                                         <div class="form-group mt-20">
                                                     		<div class="col-sm-offset-2 col-sm-10">

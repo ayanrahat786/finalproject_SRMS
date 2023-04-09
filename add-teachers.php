@@ -117,6 +117,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                                     </div>
                                                 </div>
 
+                                              
                                                 <div class="form-group">
                                                     <label for="default" class="col-sm-2 control-label">Password</label>
                                                     <div class="col-sm-10">

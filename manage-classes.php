@@ -109,7 +109,6 @@ else if($error){?>
                                                             <th>#</th>
                                                             <th>Class Name</th>
                                                             <th>Class Name Numeric</th>
-                                                            <th>Section</th>
                                                             <th>Creation Date</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -119,7 +118,6 @@ else if($error){?>
                                                           <th>#</th>
                                                             <th>Class Name</th>
                                                             <th>Class Name Numeric</th>
-                                                            <th>Section</th>
                                                             <th>Creation Date</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -138,7 +136,6 @@ foreach($results as $result)
  <td><?php echo htmlentities($cnt);?></td>
                                                             <td><?php echo htmlentities($result->ClassName);?></td>
                                                             <td><?php echo htmlentities($result->ClassNameNumeric);?></td>
-                                                            <td><?php echo htmlentities($result->Section);?></td>
                                                             <td><?php echo htmlentities($result->CreationDate);?></td>
 <td>
 <a href="edit-class.php?classid=<?php echo htmlentities($result->id);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
